@@ -7,7 +7,7 @@ import os
 st.set_page_config(
     page_title="Visit with Us - Wellness Tourism Package Predictor",
     page_icon="✈️",
-    layout="centered"
+    layout="wide"  # Changed to "wide" layout to accommodate 3 columns smoothly!
 )
 
 # App Header with Company Name and Enhanced Title
@@ -31,7 +31,8 @@ model = load_model()
 # User Input Form
 st.subheader("Customer Details")
 
-col1, col2 = st.columns(2)
+# Creating 3 columns for a compact, single-page layout
+col1, col2, col3 = st.columns(3)
 
 with col1:
     age = st.number_input("Age", min_value=18, max_value=100, value=35)
@@ -40,14 +41,16 @@ with col1:
     duration_of_pitch = st.number_input("Duration of Pitch (minutes)", min_value=1.0, max_value=150.0, value=15.0)
     occupation = st.selectbox("Occupation", ["Salaried", "Small Business", "Large Business", "Free Lancer"])
     gender = st.selectbox("Gender", ["Male", "Female"])
+
+with col2:
+    marital_status = st.selectbox("Marital Status", ["Single", "Married", "Divorced"])
     num_person_visiting = st.slider("Number of Persons Visiting", 1, 5, 2)
     num_followups = st.slider("Number of Follow-ups", 1, 6, 3)
     product_pitched = st.selectbox("Product Pitched", ["Basic", "Deluxe", "Standard", "Super Deluxe", "King"])
     preferred_property_star = st.selectbox("Preferred Property Star", [3.0, 4.0, 5.0])
-
-with col2:
-    marital_status = st.selectbox("Marital Status", ["Single", "Married", "Divorced"])
     num_trips = st.number_input("Number of Trips Annually", min_value=0, max_value=30, value=2)
+
+with col3:
     passport = st.selectbox("Has Passport?", [0, 1], format_func=lambda x: "Yes" if x == 1 else "No")
     pitch_satisfaction_score = st.slider("Pitch Satisfaction Score", 1, 5, 3)
     own_car = st.selectbox("Owns Car?", [0, 1], format_func=lambda x: "Yes" if x == 1 else "No")
@@ -78,11 +81,11 @@ input_data = pd.DataFrame({
 })
 
 # Prediction Logic
-if st.button("Predict Purchase Likelihood", type="primary"):
+st.markdown("---")
+if st.button("Predict Purchase Likelihood", type="primary", use_container_width=True):
     prediction = model.predict(input_data)[0]
     probability = model.predict_proba(input_data)[0][1]
     
-    st.markdown("---")
     if prediction == 1:
         st.success(f"🎉 **High Likelihood!** This customer is likely to purchase the Wellness Tourism Package (Purchase Probability: `{probability:.2%}`). Recommended for immediate sales outreach.")
     else:
