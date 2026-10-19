@@ -3,8 +3,8 @@ name: Tourism Project Pipeline
 on:
   push:
     branches:
-      - main  # Automatically triggers on push to the main branch
-  workflow_dispatch:  # lets you click "Run workflow" in the Actions tab
+      - main
+  workflow_dispatch:
 
 permissions:
   contents: write
@@ -54,11 +54,7 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: data-splits
-          path: |
-            Xtrain.csv
-            Xtest.csv
-            ytrain.csv
-            ytest.csv
+          path: tourism_project/data/
 
   # ---------- JOB 3: Model Training & Tracking ----------
   model-traning:
@@ -77,6 +73,7 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           name: data-splits
+          path: tourism_project/data/
       - name: Start MLflow Server
         run: |
           nohup mlflow ui --host 0.0.0.0 --port 5000 &
