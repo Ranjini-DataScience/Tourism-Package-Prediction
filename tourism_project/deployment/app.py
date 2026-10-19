@@ -48,3 +48,55 @@ try:
     monthly_income = float(income_input)
 except ValueError:
     monthly_income = 30000.0
+
+try:
+    number_of_person = int(persons_input)
+except ValueError:
+    number_of_person = 2
+
+try:
+    number_of_followups = int(followups_input)
+except ValueError:
+    number_of_followups = 3
+
+try:
+    number_of_trips = int(trips_input)
+except ValueError:
+    number_of_trips = 2
+
+try:
+    number_of_children = int(children_input)
+except ValueError:
+    number_of_children = 0
+
+# Collect inputs into a DataFrame matching model feature expectations
+input_data = pd.DataFrame({
+    'Age': [age],
+    'CityTier': [city_tier],
+    'DurationOfPitch': [duration_of_pitch],
+    'NumberOfPersonVisiting': [number_of_person],
+    'NumberOfFollowups': [number_of_followups],
+    'PreferredPropertyStar': [preferred_property_star],
+    'NumberOfTrips': [number_of_trips],
+    'Passport': [passport],
+    'PitchSatisfactionScore': [pitch_satisfaction],
+    'OwnCar': [own_car],
+    'NumberOfChildrenVisiting': [number_of_children],
+    'MonthlyIncome': [monthly_income],
+    'TypeofContact': [type_of_contact],
+    'Occupation': [occupation],
+    'Gender': [gender],
+    'ProductPitched': [product_pitched],
+    'MaritalStatus': [marital_status],
+    'Designation': [designation]
+})
+
+# Prediction trigger button and output display
+if st.button("Predict Package Purchase"):
+    prediction = model.predict(input_data)[0]
+    probability = model.predict_proba(input_data)[0][1]
+
+    if prediction == 1:
+        st.success(f"Prediction: Customer is LIKELY to purchase the package. (Probability: {probability:.2f})")
+    else:
+        st.warning(f"Prediction: Customer is UNLIKELY to purchase the package. (Probability: {probability:.2f})")
