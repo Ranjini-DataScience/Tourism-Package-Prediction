@@ -7,7 +7,7 @@ import os
 st.set_page_config(
     page_title="Visit with Us - Wellness Tourism Package Predictor",
     page_icon="✈️",
-    layout="wide"  # 3-column wide dashboard layout
+    layout="wide"
 )
 
 # App Header with Company Name and Enhanced Title
@@ -35,17 +35,17 @@ preset = st.sidebar.selectbox(
     ["Custom", "High Likelihood Lead", "Low Likelihood Lead"]
 )
 
-# Configure preset values across all 18 parameters
+# Adjusted preset values for distinct High vs Low classification
 if preset == "High Likelihood Lead":
     p_contact, p_tier, p_occ, p_gender = 1, 0, 0, 0  # Company Invited, Tier 1, Salaried, Male
-    d_age, d_dur = 38, 28.0
-    p_marital, d_visiting, d_followups, p_product, p_star, d_trips = 1, 2, 2, 3, 1, 3  # Married, 2 persons, 2 follow-ups, Super Deluxe, 4-star, 3 trips
-    p_pass, d_satisfaction, p_car, d_children, p_desig, d_income = 1, 4, 1, 0, 1, 55000.0  # Yes passport, 4 satisfaction, own car, 0 children, Manager, 55k income
+    d_age, d_dur = 38, 30.0
+    p_marital, d_visiting, d_followups, p_product, p_star, d_trips = 1, 3, 2, 3, 2, 4  # Married, 3 visiting, 2 follow-ups, Super Deluxe, 5-star, 4 trips
+    p_pass, d_satisfaction, p_car, d_children, p_desig, d_income = 1, 5, 1, 0, 1, 65000.0  # Yes passport, 5 satisfaction, own car, Manager, 65k income
 elif preset == "Low Likelihood Lead":
-    p_contact, p_tier, p_occ, p_gender = 0, 2, 1, 1  # Self Enquiry, Tier 3, Small Business, Female
-    d_age, d_dur = 24, 9.0
-    p_marital, d_visiting, d_followups, p_product, p_star, d_trips = 0, 1, 5, 0, 0, 1  # Single, 1 person, 5 follow-ups, Basic, 3-star, 1 trip
-    p_pass, d_satisfaction, p_car, d_children, p_desig, d_income = 0, 2, 0, 1, 0, 18000.0  # No passport, 2 satisfaction, no car, 1 child, Executive, 18k income
+    p_contact, p_tier, p_occ, p_gender = 0, 2, 3, 1  # Self Enquiry, Tier 3, Free Lancer, Female
+    d_age, d_dur = 55, 5.0
+    p_marital, d_visiting, d_followups, p_product, p_star, d_trips = 2, 1, 6, 0, 0, 0  # Divorced, 1 person, 6 follow-ups, Basic, 3-star, 0 trips
+    p_pass, d_satisfaction, p_car, d_children, p_desig, d_income = 0, 1, 0, 2, 0, 12000.0  # No passport, 1 satisfaction, no car, 2 children, Executive, 12k income
 else:  # Custom default
     p_contact, p_tier, p_occ, p_gender = 0, 0, 0, 0
     d_age, d_dur = 35, 15.0
