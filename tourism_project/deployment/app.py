@@ -35,7 +35,7 @@ preset = st.sidebar.selectbox(
     ["Custom", "High Likelihood Lead", "Low Likelihood Lead"]
 )
 
-# Configure preset values
+# Configure preset values across all 18 parameters
 if preset == "High Likelihood Lead":
     p_contact, p_tier, p_occ, p_gender = 1, 0, 0, 0  # Company Invited, Tier 1, Salaried, Male
     d_age, d_dur = 38, 28.0
