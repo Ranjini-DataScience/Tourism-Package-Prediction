@@ -35,17 +35,17 @@ preset = st.sidebar.selectbox(
     ["Custom", "High Likelihood Lead", "Low Likelihood Lead"]
 )
 
-# Adjusted preset values for distinct High vs Low classification
+# Calibrated preset values for guaranteed High (>50%) vs Low (<50%) classification
 if preset == "High Likelihood Lead":
-    p_contact, p_tier, p_occ, p_gender = 1, 0, 0, 0  # Company Invited, Tier 1, Salaried, Male
-    d_age, d_dur = 38, 30.0
-    p_marital, d_visiting, d_followups, p_product, p_star, d_trips = 1, 3, 2, 3, 2, 4  # Married, 3 visiting, 2 follow-ups, Super Deluxe, 5-star, 4 trips
-    p_pass, d_satisfaction, p_car, d_children, p_desig, d_income = 1, 5, 1, 0, 1, 65000.0  # Yes passport, 5 satisfaction, own car, Manager, 65k income
+    p_contact, p_tier, p_occ, p_gender = 0, 0, 0, 0  # Self Enquiry, Tier 1, Salaried, Male
+    d_age, d_dur = 35, 35.0
+    p_marital, d_visiting, d_followups, p_product, p_star, d_trips = 1, 3, 3, 4, 2, 4  # Married, 3 visiting, 3 follow-ups, King, 5-star, 4 trips
+    p_pass, d_satisfaction, p_car, d_children, p_desig, d_income = 1, 5, 1, 0, 1, 45000.0  # Yes passport, 5 satisfaction, Manager, 45k income
 elif preset == "Low Likelihood Lead":
-    p_contact, p_tier, p_occ, p_gender = 0, 2, 3, 1  # Self Enquiry, Tier 3, Free Lancer, Female
-    d_age, d_dur = 55, 5.0
-    p_marital, d_visiting, d_followups, p_product, p_star, d_trips = 2, 1, 6, 0, 0, 0  # Divorced, 1 person, 6 follow-ups, Basic, 3-star, 0 trips
-    p_pass, d_satisfaction, p_car, d_children, p_desig, d_income = 0, 1, 0, 2, 0, 12000.0  # No passport, 1 satisfaction, no car, 2 children, Executive, 12k income
+    p_contact, p_tier, p_occ, p_gender = 1, 2, 3, 1  # Company Invited, Tier 3, Free Lancer, Female
+    d_age, d_dur = 50, 9.0
+    p_marital, d_visiting, d_followups, p_product, p_star, d_trips = 2, 1, 1, 0, 0, 1  # Divorced, 1 person, 1 follow-up, Basic, 3-star, 1 trip
+    p_pass, d_satisfaction, p_car, d_children, p_desig, d_income = 0, 1, 0, 2, 0, 15000.0  # No passport, 1 satisfaction, Executive, 15k income
 else:  # Custom default
     p_contact, p_tier, p_occ, p_gender = 0, 0, 0, 0
     d_age, d_dur = 35, 15.0
