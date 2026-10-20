@@ -55,7 +55,7 @@ with col3:
     own_car = st.selectbox("Owns Car?", [0, 1], format_func=lambda x: "Yes" if x == 1 else "No")
     num_children_visiting = st.slider("Number of Children Visiting (< 5 years)", 0, 3, 1)
     designation = st.selectbox("Designation", ["Executive", "Manager", "Senior Manager", "AVP", "VP"])
-    monthly_income = st.number_input("Monthly Income (INR)", min_value=1000.0, max_value=1500000.0, value=24000.0)
+    monthly_income = st.number_input("Monthly Income (INR)", min_value=1000.0, max_value=1500000.0, value=50000.0)
 
 # Compile Inputs into DataFrame
 input_data = pd.DataFrame({
