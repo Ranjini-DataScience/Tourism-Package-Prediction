@@ -37,14 +37,14 @@ with col1:
     age = st.number_input("Age", min_value=18, max_value=100, value=35)
     type_of_contact = st.selectbox("Type of Contact", ["Self Enquiry", "Company Invited"])
     city_tier = st.selectbox("City Tier", [1, 2, 3])
-    
+
     # Manual text input without plus/minus stepper buttons
     duration_str = st.text_input("Duration of Pitch (minutes)", value="15.0")
     try:
         duration_of_pitch = float(duration_str)
     except ValueError:
         duration_of_pitch = 15.0  # Default fallback if empty or invalid text
-        
+
     occupation = st.selectbox("Occupation", ["Salaried", "Small Business", "Large Business", "Free Lancer"])
     gender = st.selectbox("Gender", ["Male", "Female"])
 
