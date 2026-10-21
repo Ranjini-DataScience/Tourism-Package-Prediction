@@ -37,7 +37,7 @@ with col1:
     age = st.number_input("Age", min_value=18, max_value=100, value=35)
     type_of_contact = st.selectbox("Type of Contact", ["Self Enquiry", "Company Invited"])
     city_tier = st.selectbox("City Tier", [1, 2, 3])
-    duration_of_pitch = st.number_input("Duration of Pitch (minutes)", min_value=1.0, max_value=150.0, value=15.0)
+    duration_of_pitch = st.number_input("Duration of Pitch (minutes)", min_value=1.0, max_value=150.0, value=15.0, step=5.0)
     occupation = st.selectbox("Occupation", ["Salaried", "Small Business", "Large Business", "Free Lancer"])
     gender = st.selectbox("Gender", ["Male", "Female"])
 
@@ -57,7 +57,7 @@ with col3:
     designation = st.selectbox("Designation", ["Executive", "Manager", "Senior Manager", "AVP", "VP"])
     monthly_income = st.number_input("Monthly Income (INR)", min_value=1000.0, max_value=1500000.0, value=50000.0)
 
-# Compile Inputs into DataFrame
+# Compile Inputs into DataFrame (Column names match training dataset exactly)
 input_data = pd.DataFrame({
     'Age': [age],
     'TypeofContact': [type_of_contact],
@@ -84,10 +84,10 @@ st.markdown("---")
 if st.button("Predict Purchase Likelihood", type="primary", use_container_width=True):
     prediction = model.predict(input_data)[0]
     probability = model.predict_proba(input_data)[0][1]
-    
+
     # Visual Probability Progress Bar
     st.progress(float(probability), text=f"Calculated Conversion Probability: {probability:.2%}")
-    
+
     if prediction == 1:
         st.success(f"🎉 **High Likelihood!** This customer is likely to purchase the Wellness Tourism Package (Purchase Probability: `{probability:.2%}`). Recommended for immediate sales outreach.")
     else:
